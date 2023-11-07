@@ -1,0 +1,66 @@
+From 73e69ceb324f5f096400420cf088408d247496ab Mon Sep 17 00:00:00 2001
+From: Alberto Ponces <ponces26@gmail.com>
+Date: Wed, 15 Feb 2023 09:52:57 +0000
+Subject: [PATCH] Slim Pixel Experience 13
+
+---
+ common/common-vendor.mk |  4 ----
+ extras/config.mk        | 12 ------------
+ 2 files changed, 16 deletions(-)
+
+diff --git a/common/common-vendor.mk b/common/common-vendor.mk
+index 328ea71..4f068a4 100644
+--- a/common/common-vendor.mk
++++ b/common/common-vendor.mk
+@@ -41,14 +41,11 @@ PRODUCT_PACKAGES += \
+     CalendarGooglePrebuilt \
+     Chrome-Stub \
+     GoogleContacts \
+-    GoogleTTS \
+     LatinIMEGooglePrebuilt \
+     LocationHistoryPrebuilt \
+     MarkupGoogle \
+-    Photos \
+     PixelThemesStub \
+     PrebuiltDeskClockGoogle \
+-    SoundAmplifierPrebuilt \
+     SoundPickerPrebuilt \
+     TrichromeLibrary-Stub \
+     WebViewGoogle-Stub \
+@@ -72,7 +69,6 @@ PRODUCT_PACKAGES += \
+     SettingsIntelligenceGooglePrebuilt \
+     SetupWizardPrebuilt \
+     TurboPrebuilt \
+-    Velvet \
+     WellbeingPrebuilt \
+     EmergencyInfoGoogleNoUi \
+     Flipendo \
+diff --git a/extras/config.mk b/extras/config.mk
+index ec046a7..bd77c23 100644
+--- a/extras/config.mk
++++ b/extras/config.mk
+@@ -1,21 +1,9 @@
+-# Recorder
+-ifeq ($(TARGET_SUPPORTS_GOOGLE_RECORDER), true)
+-PRODUCT_PACKAGES += \
+-    RecorderPrebuilt
+-endif
+-
+ # arcore
+ ifeq ($(TARGET_INCLUDE_STOCK_ARCORE),true)
+ PRODUCT_PACKAGES += \
+     arcore
+ endif
+ 
+-# Live Wallpapers
+-ifeq ($(TARGET_INCLUDE_LIVE_WALLPAPERS),true)
+-PRODUCT_PACKAGES += \
+-    PixelLiveWallpaperPrebuilt
+-endif
+-
+ # Quick Tap
+ ifeq ($(TARGET_SUPPORTS_QUICK_TAP),true)
+ PRODUCT_PACKAGES += \
+-- 
+2.34.1
+
