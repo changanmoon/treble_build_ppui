@@ -25,6 +25,7 @@ To get started with building PixelPlusUI GSI, you'll need to get familiar with [
 Special thanks to these people because this repository would not be possible without their efforts on other projects:
 - [PixelPlusUI Team](https://github.com/PixelPlusUI)
 - [phhusson](https://github.com/phhusson)
+- [ponces](https://github.com/ponces)
 - [AndyYan](https://github.com/AndyCGYan)
 - [eremitein](https://github.com/eremitein)
 - [kdrag0n](https://github.com/kdrag0n)
