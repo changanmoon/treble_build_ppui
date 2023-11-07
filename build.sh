@@ -2,26 +2,26 @@
 
 echo
 echo "--------------------------------------"
-echo "    Pixel Experience 13.0 Buildbot    "
+echo "      PixelPlusUI 13.0 Buildbot       "
 echo "                  by                  "
-echo "                ponces                "
+echo "              changanmoon             "
 echo "--------------------------------------"
 echo
 
 set -e
 
-BL=$PWD/treble_build_pe
+BL=$PWD/treble_build_ppui
 BD=$HOME/builds
 
 initRepos() {
     if [ ! -d .repo ]; then
         echo "--> Initializing workspace"
-        repo init -u https://github.com/PixelExperience/manifest -b thirteen
+        repo init -u https://github.com/PixelPlusUI/manifest -b tiramisu
         echo
 
         echo "--> Preparing local manifest"
         mkdir -p .repo/local_manifests
-        cp $BL/manifest.xml .repo/local_manifests/pixel.xml
+        cp $BL/manifest.xml .repo/local_manifests/ppui.xml
         echo
     fi
 }
@@ -41,14 +41,14 @@ applyPatches() {
     bash $BL/apply-patches.sh $BL trebledroid
     echo
 
-    echo "--> Applying personal patches"
+    echo "--> Applying Ponces's personal patches"
     bash $BL/apply-patches.sh $BL personal
     echo
 
     echo "--> Generating makefiles"
     cd device/phh/treble
-    cp $BL/pe.mk .
-    bash generate.sh pe
+    cp $BL/ppui.mk .
+    bash generate.sh ppui
     cd ../../..
     echo
 }
@@ -100,9 +100,9 @@ buildVndkliteVariant() {
 generatePackages() {
     echo "--> Generating packages"
     buildDate="$(date +%Y%m%d)"
-    xz -cv $BD/system-treble_arm64_bvN.img -T0 > $BD/PixelExperience_arm64-ab-13.0-$buildDate-UNOFFICIAL.img.xz
-    xz -cv $BD/system-treble_arm64_bvN-vndklite.img -T0 > $BD/PixelExperience_arm64-ab-vndklite-13.0-$buildDate-UNOFFICIAL.img.xz
-    xz -cv $BD/system-treble_arm64_bvN-slim.img -T0 > $BD/PixelExperience_arm64-ab-slim-13.0-$buildDate-UNOFFICIAL.img.xz
+    xz -cv $BD/system-treble_arm64_bvN.img -T0 > $BD/PixelPlusUI_arm64-ab-13.0-$buildDate-UNOFFICIAL.img.xz
+    xz -cv $BD/system-treble_arm64_bvN-vndklite.img -T0 > $BD/PixelPlusUI_arm64-ab-vndklite-13.0-$buildDate-UNOFFICIAL.img.xz
+    xz -cv $BD/system-treble_arm64_bvN-slim.img -T0 > $BD/PixelPlusUI_arm64-ab-slim-13.0-$buildDate-UNOFFICIAL.img.xz
     rm -rf $BD/system-*.img
     echo
 }
@@ -112,7 +112,7 @@ generateOta() {
     version="$(date +v%Y.%m.%d)"
     timestamp="$START"
     json="{\"version\": \"$version\",\"date\": \"$timestamp\",\"variants\": ["
-    find $BD/ -name "PixelExperience_*" | sort | {
+    find $BD/ -name "PixelPlusUI_*" | sort | {
         while read file; do
             filename="$(basename $file)"
             if [[ $filename == *"vndklite"* ]]; then
@@ -123,7 +123,7 @@ generateOta() {
                 name="treble_arm64_bvN"
             fi
             size=$(wc -c $file | awk '{print $1}')
-            url="https://github.com/ponces/treble_build_pe/releases/download/$version/$filename"
+            url="https://github.com/changanmoon/treble_build_ppui/releases/download/$version/$filename"
             json="${json} {\"name\": \"$name\",\"size\": \"$size\",\"url\": \"$url\"},"
         done
         json="${json%?}]}"
