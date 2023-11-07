@@ -12,7 +12,7 @@ To get started with building PixelPlusUI GSI, you'll need to get familiar with [
     ```
 - Finally, start the build script:
     ```
-    bash treble_build_pe/build.sh
+    bash treble_build_ppui/build.sh
     ```
 
 ## Notes
